@@ -1,0 +1,47 @@
+<html>
+<!doctype>
+<head>
+<script type="text/javascript" src="library/jquery-2.1.4.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/snake.css">
+</head>
+
+<body>
+	<h3>Snake And Ladder</h3>
+
+	<div id="parentZone">
+		
+		<div id="mainBoard">
+			
+		</div>
+
+		<div class="dice-score">
+			
+		</div>
+			
+	</div>
+	<div id="diceZone">
+		<button type="button" class="dice-btn btn-info btn"></button>
+	</div>
+	
+	<script type="text/template" id="boardTemplate">
+		<div data-index="" class="snake-box"></div>
+	</script>
+
+	<script type="text/template" id="playerTemplate">
+		<span class="">Dice Score:</span>
+		<span class="dice-score"></span>
+		<br/>
+		<span class="">Current Position:</span>
+		<span class="current-position"></span>
+	</script>
+
+	<script type="text/javascript" src="model/player.model.js"></script>
+	<script type="text/javascript" src="view/snake.view.js"></script>
+
+</body>
+
+</html>

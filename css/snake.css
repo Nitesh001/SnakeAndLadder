@@ -1,0 +1,72 @@
+.snake-box{
+	width:9%;
+	height:9%;
+	margin:3px;
+	display: inline-block;
+	line-height: 300%;
+	text-align: center;
+	position: relative;
+    box-shadow: 0 2px 2px rgb(119, 119, 119);
+    cursor: pointer;
+}
+
+#mainBoard{
+	width: 600px;
+	height: 600px;
+	margin:auto;
+	display: inline-block;
+}
+
+h3{
+	text-align: center;
+}
+
+#parentZone{
+	text-align: center;
+	width: 100%
+}
+
+#diceZone{
+	text-align: center;
+}
+
+.red{
+	background: red;
+	left:5%;
+}
+
+.blue{
+	background: blue;
+	left: 30%;
+}
+
+.green{
+	background: green;
+	left: 55%;
+}
+
+.yellow{
+	background: yellow;
+	left: 80%;
+}
+
+.snake-disk{
+	width: 10px;
+    height: 10px;
+    bottom: 5px;
+    position: absolute;
+    border: 1px solid rgb(128, 128, 128);
+}
+
+.dice-score, #diceZone{
+	margin-top: 15px;
+}
+
+.ladder-back{
+	background-image: url("../images/ladder2.jpg");
+	background-repeat: no-repeat;
+}
+
+.snake-back{
+	background-image: url("../images/snake-head.png");
+}
