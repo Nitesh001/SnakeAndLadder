@@ -66,10 +66,23 @@ h3{
 }
 
 .ladder-back{
-	background-image: url("../images/ladder2.jpg");
-	background-repeat: no-repeat;
+	background-image: url("../images/ladder2.png");
+    background-repeat: no-repeat;
+    background-color: rgb(92, 184, 92);
+    background-size: contain;
+    color: rgb(255, 255, 255);
+    border-color: rgb(76, 174, 76);
 }
 
 .snake-back{
 	background-image: url("../images/snake-head.png");
+    background-color: rgb(217, 83, 79);
+    border-color: rgb(212, 63, 58);
+    color: rgb(255, 255, 255);
+}
+
+#mainBoard [data-index="100"]{
+	color: rgb(255, 255, 255);
+    background-color: rgb(240, 173, 78);
+    border-color: rgb(238, 162, 54);
 }
