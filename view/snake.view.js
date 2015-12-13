@@ -88,24 +88,55 @@
 	function movePlayer(num){
 		var score = PLAYERS[PLAYER_TURN].getPlayerScore();
 		score = score+num,
-		col = "";
+		col = PLAYERS[PLAYER_TURN].getPlayerColor(),
+		currentElement = $("."+col,"#mainBoard"),
+		currentPosition=getPosition(currentElement[0]),
+		newPosition={},
+		tempPosition = false;
 		
 		/*moving high or moving down*/
 		if(snakePos[score]){
+			tempPosition = {};
+			newPosition = getPosition($("[data-index="+score+"]","#mainBoard")[0]);
+			tempPosition.x = newPosition.x - currentPosition.x + $("."+col,"#mainBoard")[0].offsetLeft;
+			tempPosition.y = newPosition.y - currentPosition.y + $("."+col,"#mainBoard")[0].offsetTop;
+			animateElement($("."+col,"#mainBoard"),tempPosition);			
 			score = snakePos[score];
+			currentPosition = getPosition(currentElement[0]);
+			tempPosition=true;
+		}else{
+			tempPosition=false;
 		}
 
 		if(score>100){
-			score=100;
+			if(PLAYER_TURN+1===PLAYERS.length){
+				PLAYER_TURN=0;
+			}else{
+				PLAYER_TURN++;
+			}
+			$(".dice-btn","#diceZone").html(PLAYERS[PLAYER_TURN].getPlayerName()+"'s turn!");			
+			return;
 		}
 
 		PLAYERS[PLAYER_TURN].setPlayerScore(score);
+		newPosition = getPosition($("[data-index="+score+"]","#mainBoard")[0]);
+		newPosition.x = newPosition.x - currentPosition.x + $("."+col,"#mainBoard")[0].offsetLeft;
+		newPosition.y = newPosition.y - currentPosition.y + $("."+col,"#mainBoard")[0].offsetTop;
 
-		col = PLAYERS[PLAYER_TURN].getPlayerColor();
-		$("."+col,"#mainBoard").appendTo($("[data-index="+score+"]","#mainBoard"));
+		if(tempPosition){
+		window.setTimeout(function(){
+			animateElement($("."+col,"#mainBoard"),newPosition);
+		},2200);						
+		}else{
+			animateElement($("."+col,"#mainBoard"),newPosition);
+		}
+		
+		//$("."+col,"#mainBoard").appendTo($("[data-index="+score+"]","#mainBoard"));
 	
 		if(score===100){
 			alert("Player "+ PLAYERS[PLAYER_TURN].getPlayerName() + " wins");
+			$(".dice-btn","#diceZone").html(PLAYERS[PLAYER_TURN].getPlayerName()+" wins").addClass("disabled");
+			$(".dice-score","#parentZone").addClass("hide");
 		}else{
 			if(PLAYER_TURN+1===PLAYERS.length){
 				PLAYER_TURN=0;
@@ -118,10 +149,24 @@
 	}
 
 	function createPlayers(){
-		var TOTAL_PLAYERS = prompt("Enter Total Players (<=4)");
+		var TOTAL_PLAYERS=0,
+			name="",
+			obj={},
+			mssg = "Enter Total Players (<=4)";
+		do{
+			TOTAL_PLAYERS = prompt(mssg);
+			if(isNaN(TOTAL_PLAYERS/1)){
+				mssg += "(only numbers)";
+				TOTAL_PLAYERS=null;
+			}
+		}while(TOTAL_PLAYERS==null || TOTAL_PLAYERS=="")
+		
 		for(var i=1;i<=TOTAL_PLAYERS;i++){
-			var name = prompt("Enter Player "+ i + " name");
-			var obj = new Player(name,COLORS[i-1]);
+			do{
+				name = prompt("Enter Player "+ i + " name");	
+			}while(name==null || name=="")
+			
+			obj = new Player(name,COLORS[i-1]);
 			PLAYERS.push(obj);
 		}
 	}
