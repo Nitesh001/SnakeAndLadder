@@ -59,6 +59,7 @@ h3{
     position: absolute;
     border: 1px solid rgb(128, 128, 128);
     transition: transform 2s linear;
+    border-radius: 50%;
 }
 
 .dice-score, #diceZone{
