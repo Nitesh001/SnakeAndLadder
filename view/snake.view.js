@@ -140,7 +140,7 @@
 			alert("Player "+ PLAYERS[PLAYER_TURN].getPlayerName() + " wins");
 			$(".dice-btn","#diceZone").html(PLAYERS[PLAYER_TURN].getPlayerName()+" wins").addClass("disabled");
 			$(".dice-score","#parentZone").addClass("hide");
-			$(".restart-game","#parentZone").removeClass("hide");
+			$(".restart-game","#diceZone").removeClass("hide");
 		}else{
 			if(PLAYER_TURN+1===PLAYERS.length){
 				PLAYER_TURN=0;
